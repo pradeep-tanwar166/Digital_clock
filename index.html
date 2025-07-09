@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Clock</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes glowPulse {
+      0%, 100% {
+        text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7, 0 0 30px #00fff7;
+      }
+      50% {
+        text-shadow: 0 0 15px #00ffd5, 0 0 25px #00ffd5, 0 0 35px #00ffd5;
+      }
+    }
+
+    .glow-text {
+      animation: glowPulse 2s ease-in-out infinite;
+    }
+
+    .backdrop-blur {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+  </style>
+</head>
+<body class="h-screen w-full bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] flex justify-center items-center overflow-hidden relative">
+
+
+  <div class="absolute top-20 left-10 w-72 h-72 bg-cyan-500 opacity-30 rounded-full filter blur-3xl animate-pulse"></div>
+  <div class="absolute bottom-20 right-10 w-72 h-72 bg-pink-500 opacity-30 rounded-full filter blur-3xl animate-pulse"></div>
+
+
+  <div class="backdrop-blur bg-white/10 border border-white/20 rounded-3xl px-10 py-6 shadow-xl">
+    <div id="para" class="text-6xl md:text-8xl text-cyan-300 font-mono glow-text text-center transition-transform duration-500 hover:scale-105">
+      00:00:00
+    </div>
+  </div>
+
+  <script>
+    const para = document.querySelector("#para");
+
+    setInterval(() => {
+      const time = new Date().toLocaleTimeString();
+      para.innerText = time;
+    }, 1000);
+  </script>
+</body>
+</html>
